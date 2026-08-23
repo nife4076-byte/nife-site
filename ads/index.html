@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nife</title>
-<meta name="robots" content="noindex">
+<title>Pricing | Nife</title>
+<meta name="description" content="Thumbnail and video editing pricing for Nife, a Minecraft-focused thumbnail designer and video editor.">
 <link rel="icon" type="image/png" href="../images/profile.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1068078723050037" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#09070a;
     --panel:#160c10;
+    --panel-2:#1e1014;
     --border:rgba(255,68,56,0.16);
     --border-strong:rgba(255,68,56,0.35);
     --text:#f6f1f2;
@@ -25,7 +25,6 @@
   html{scroll-behavior:smooth;}
   body{
     margin:0;
-    min-height:100vh;
     background:var(--bg);
     color:var(--text);
     font-family:'Inter',sans-serif;
@@ -36,6 +35,30 @@
   img{max-width:100%;display:block;}
 
   .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+
+  h1,h2,h3{
+    font-family:'Sora',sans-serif;
+    font-weight:700;
+    margin:0;
+    letter-spacing:-0.015em;
+  }
+
+  .eyebrow{
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.04em;
+    color:var(--red);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:6px;height:6px;
+    border-radius:50%;
+    background:var(--red);
+    box-shadow:0 0 10px var(--red);
+  }
 
   /* ---------- BACKDROP ---------- */
   .backdrop{
@@ -104,9 +127,7 @@
   }
   .nav-links a{transition:color .15s;}
   .nav-links a:hover{color:var(--text);}
-  @media (max-width:760px){
-    .nav-links{display:none;}
-  }
+  .nav-links a.active{color:var(--text);}
   .nav-cta{
     font-size:13.5px;
     font-weight:600;
@@ -120,55 +141,148 @@
   }
   .nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px -6px rgba(255,68,56,0.7);}
 
-  /* ---------- PAGE CONTENT ---------- */
-  main{
-    display:flex;
-    flex-direction:column;
+  @media (max-width:760px){
+    .nav-links{display:none;}
+  }
+
+  /* ---------- BUTTONS ---------- */
+  .btn{
+    font-family:'Sora',sans-serif;
+    font-weight:600;
+    font-size:15px;
+    padding:13px 26px;
+    border-radius:999px;
+    display:inline-flex;
     align-items:center;
-    padding:170px 20px 100px;
+    gap:8px;
+    transition:transform .15s, box-shadow .15s, border-color .15s;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{
+    background:linear-gradient(135deg, var(--red), var(--deep));
+    color:#fff;
+    box-shadow:0 10px 30px -8px rgba(255,68,56,0.55);
+  }
+  .btn-primary:hover{box-shadow:0 14px 34px -8px rgba(255,68,56,0.75);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:170px 0 40px;
     text-align:center;
   }
-  h1{
-    font-family:'Sora',sans-serif;
-    font-weight:700;
-    font-size:clamp(24px,4vw,34px);
-    max-width:480px;
-    margin:0 0 10px;
+  .hero h1{
+    font-size:clamp(32px, 5.5vw, 52px);
+    line-height:1.06;
+    max-width:700px;
+    margin:18px auto 0;
   }
-  main > p{
-    color:var(--muted);
-    max-width:420px;
-    font-size:14.5px;
+  .hero h1 span{
+    background:linear-gradient(135deg, #fff, var(--red) 120%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero p.sub{
+    margin:20px auto 0;
+    font-size:16px;
     line-height:1.6;
-    margin:0 0 40px;
+    color:var(--muted);
+    max-width:460px;
   }
-  .support-box{
-    width:100%;
-    max-width:728px;
-    min-height:280px;
-    border-radius:14px;
+
+  /* ---------- PRICING ---------- */
+  section{padding:60px 0 110px;}
+  .price-group{margin-bottom:60px;}
+  .price-group-head{
+    text-align:center;
+    margin-bottom:32px;
+  }
+  .price-group-head h2{
+    font-size:clamp(22px,2.8vw,28px);
+  }
+  .price-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:20px;
+    max-width:760px;
+    margin:0 auto;
+  }
+  .price-card{
     border:1px solid var(--border);
-    background:var(--panel);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    gap:14px;
+    border-radius:16px;
+    background:linear-gradient(180deg, var(--panel), var(--panel-2));
+    padding:32px 26px;
+    text-align:center;
+    transition:transform .18s, border-color .18s, box-shadow .18s;
   }
-  .adblock-note{
+  .price-card:hover{
+    transform:translateY(-5px);
+    border-color:var(--border-strong);
+    box-shadow:0 20px 40px -20px rgba(255,68,56,0.35);
+  }
+  .price-card.featured{
+    border-color:var(--border-strong);
+    box-shadow:0 20px 50px -25px rgba(155,0,0,0.5);
+    position:relative;
+  }
+  .price-card.featured::before{
+    content:"BEST VALUE";
+    position:absolute;
+    top:-11px;left:50%;
+    transform:translateX(-50%);
+    font-family:'Sora',sans-serif;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:0.08em;
+    background:linear-gradient(135deg, var(--red), var(--deep));
+    color:#fff;
+    padding:5px 12px;
+    border-radius:999px;
+  }
+  .price-card h3{
+    font-size:16px;
+    font-weight:600;
+    color:var(--muted);
+    margin-bottom:14px;
+  }
+  .price-amount{
+    font-family:'Sora',sans-serif;
+    font-weight:800;
+    font-size:44px;
+    color:var(--text);
+    line-height:1;
+  }
+  .price-amount sup{
+    font-size:18px;
+    font-weight:700;
+    top:-1.1em;
+  }
+  .cad-label{
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    font-weight:600;
+    color:var(--muted);
+    letter-spacing:0.03em;
+    vertical-align:middle;
+  }
+  .price-note{
     color:var(--muted);
     font-size:13px;
-    line-height:1.6;
-    max-width:280px;
-    margin:0;
-    text-align:center;
+    margin-top:8px;
   }
-  .back{
-    margin-top:40px;
-    color:var(--red);
-    font-size:13.5px;
-    text-decoration:underline;
+
+  @media (max-width:600px){
+    .price-grid{grid-template-columns:1fr;}
+  }
+
+  .cta-block{
+    text-align:center;
+    margin-top:50px;
+  }
+  .cta-block p{
+    color:var(--muted);
+    font-size:14.5px;
+    margin:0 0 20px;
   }
 
   /* ---------- FOOTER ---------- */
@@ -217,6 +331,7 @@
     <div class="nav-links">
       <a href="/#work">Work</a>
       <a href="/#about">About</a>
+      <a href="/prices" class="active">Prices</a>
       <a href="/#contact">Contact</a>
     </div>
     <a class="nav-cta" href="https://discord.com/users/973345193413709944" target="_blank" rel="noopener">Message on Discord</a>
@@ -224,23 +339,60 @@
 </header>
 
 <main>
-  <h1>Thanks for stopping by</h1>
-  <p>This page helps support the site. Feel free to look around, <strong style="color:var(--text);">real ads will appear here once everything's fully approved.</strong></p>
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">PRICING</span>
+      <h1>Simple pricing, <span>no surprises.</span></h1>
+      <p class="sub">Flat rates for thumbnails and video editing. Message me on Discord to get started.</p>
+    </div>
+  </section>
 
-  <div class="support-box">
-    <ins class="adsbygoogle"
-         style="display:block; width:100%;"
-         data-ad-client="ca-pub-1068078723050037"
-         data-ad-slot="8543168523"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-    <p class="adblock-note">If you're seeing this, you might have an ad blocker on. Please consider turning it off.</p>
-  </div>
+  <section>
+    <div class="wrap">
 
-  <a href="/" class="back">← Back to nifeminecraft.com</a>
+      <div class="price-group">
+        <div class="price-group-head">
+          <h2>Thumbnails</h2>
+        </div>
+        <div class="price-grid">
+          <div class="price-card">
+            <h3>Single Thumbnail</h3>
+            <div class="price-amount"><sup>$</sup>5 <span class="cad-label">CAD</span></div>
+            <p class="price-note">One custom thumbnail</p>
+          </div>
+          <div class="price-card featured">
+            <h3>3 Thumbnails</h3>
+            <div class="price-amount"><sup>$</sup>12 <span class="cad-label">CAD</span></div>
+            <p class="price-note">Save $3 vs. buying single</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="price-group">
+        <div class="price-group-head">
+          <h2>Video Editing</h2>
+        </div>
+        <div class="price-grid">
+          <div class="price-card">
+            <h3>Short-Form Edit</h3>
+            <div class="price-amount"><sup>$</sup>10 <span class="cad-label">CAD</span></div>
+            <p class="price-note">Shorts, clips, quick edits</p>
+          </div>
+          <div class="price-card">
+            <h3>Long-Form Edit</h3>
+            <div class="price-amount"><sup>$</sup>20 <span class="cad-label">CAD</span></div>
+            <p class="price-note">Full-length video edit</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-block">
+        <p>Need something custom, or looking for a partnership? Just ask.</p>
+        <a href="https://discord.com/users/973345193413709944" target="_blank" rel="noopener" class="btn btn-primary">Message on Discord</a>
+      </div>
+
+    </div>
+  </section>
 </main>
 
 <footer>
@@ -250,6 +402,5 @@
   </div>
 </footer>
 
-<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "13fecc09cc184a379b43bd7e2968e934"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
