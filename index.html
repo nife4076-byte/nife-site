@@ -323,6 +323,14 @@
     font-family:'Inter',sans-serif;
     line-height:1.35;
   }
+  .video-tag{
+    font-family:'Inter',sans-serif;
+    font-size:10.5px;
+    font-weight:700;
+    letter-spacing:0.06em;
+    color:var(--red);
+  }
+  .video-card .card-media{background:#000;}
 
   @media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr);}}
   @media (max-width:600px){.grid{grid-template-columns:1fr;}}
@@ -486,6 +494,7 @@
     </a>
     <div class="nav-links">
       <a href="#work">Work</a>
+      <a href="#videos">Videos</a>
       <a href="#about">About</a>
       <a href="/prices">Prices</a>
       <a href="#contact">Contact</a>
@@ -500,7 +509,7 @@
   <section class="hero">
     <div class="wrap">
       <span class="eyebrow">THUMBNAIL DESIGNER &amp; VIDEO EDITOR</span>
-      <h1>Thumbnails that stop <span>the scroll.</span></h1>
+      <h1>Thumbnails and edits that stop <span>the scroll.</span></h1>
       <p class="sub">I'm Nife, a graphic designer and video editor who helps YouTubers bring their ideas to life. Clean design, strong visuals, that make thumbnails built to get clicks.</p>
       <div class="hero-actions">
         <a href="#work" class="btn btn-primary">View my work</a>
@@ -596,6 +605,54 @@
             <span class="card-badge">THUMBNAIL</span>
           </div>
           <div class="card-body"><h3>I Captured Every Cow In Minecraft</h3></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section id="videos" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">SELECTED WORK</span>
+        <h2>Video editing highlights</h2>
+        <p>A few edits and shorts I've put together for creators.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card video-card">
+          <div class="card-media" style="aspect-ratio:9/16;">
+            <iframe src="https://www.youtube.com/embed/Qk2QBPuriD0" title="YouTube short" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" style="width:100%;height:100%;border:0;"></iframe>
+          </div>
+          <div class="card-body"><span class="video-tag">SHORT</span></div>
+        </article>
+
+        <article class="card video-card">
+          <div class="card-media" style="aspect-ratio:9/16;">
+            <iframe src="https://www.youtube.com/embed/ADNbYD4lUkk" title="YouTube short" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" style="width:100%;height:100%;border:0;"></iframe>
+          </div>
+          <div class="card-body"><span class="video-tag">SHORT</span></div>
+        </article>
+
+        <article class="card video-card">
+          <div class="card-media">
+            <iframe src="https://www.youtube.com/embed/2lVkqseoLQs?start=11" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" style="width:100%;height:100%;border:0;"></iframe>
+          </div>
+          <div class="card-body"><span class="video-tag">LONGFORM</span></div>
+        </article>
+
+        <article class="card video-card">
+          <div class="card-media">
+            <iframe src="https://www.youtube.com/embed/-hMCpVlxNFc" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" style="width:100%;height:100%;border:0;"></iframe>
+          </div>
+          <div class="card-body"><span class="video-tag">LONGFORM</span></div>
+        </article>
+
+        <article class="card video-card">
+          <div class="card-media">
+            <iframe src="https://www.youtube.com/embed/sIEMs2KGF84" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" style="width:100%;height:100%;border:0;"></iframe>
+          </div>
+          <div class="card-body"><span class="video-tag">LONGFORM</span></div>
         </article>
       </div>
     </div>
@@ -725,7 +782,7 @@
 
 <script>
   (function(){
-    var sections = ["work", "about", "contact"].map(function(id){
+    var sections = ["work", "videos", "about", "contact"].map(function(id){
       return document.getElementById(id);
     }).filter(Boolean);
 
