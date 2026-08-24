@@ -125,9 +125,16 @@
     font-weight:500;
     color:var(--muted);
   }
-  .nav-links a{transition:color .15s;}
+  .nav-links a{
+    transition:color .15s, transform .15s, font-weight .15s;
+    display:inline-block;
+  }
   .nav-links a:hover{color:var(--text);}
-  .nav-links a.active{color:var(--text);}
+  .nav-links a.active{
+    color:var(--text);
+    font-weight:700;
+    transform:scale(1.08);
+  }
   .nav-cta{
     font-size:13.5px;
     font-weight:600;
@@ -305,6 +312,33 @@
     html{scroll-behavior:auto;}
     *{transition:none !important;}
   }
+  button{font-family:inherit;}
+  .nav-cta, .btn{cursor:pointer;border:none;outline:none;}
+
+  #discord-toast{
+    position:fixed;
+    left:50%;
+    bottom:32px;
+    transform:translateX(-50%) translateY(20px);
+    background:var(--panel);
+    border:1px solid var(--border-strong);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    font-size:14px;
+    font-weight:500;
+    padding:13px 22px;
+    border-radius:999px;
+    box-shadow:0 20px 50px -15px rgba(0,0,0,0.7), 0 0 20px rgba(255,68,56,0.25);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s ease, transform .25s ease;
+    z-index:1000;
+    white-space:nowrap;
+  }
+  #discord-toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+  }
 </style>
 </head>
 <body>
@@ -334,7 +368,7 @@
       <a href="/prices" class="active">Prices</a>
       <a href="/#contact">Contact</a>
     </div>
-    <a class="nav-cta" href="https://discord.com/users/973345193413709944" target="_blank" rel="noopener">Message on Discord</a>
+    <button type="button" class="nav-cta" onclick="copyDiscordUsername()">Message on Discord</button>
   </nav>
 </header>
 
@@ -388,7 +422,7 @@
 
       <div class="cta-block">
         <p>Need something custom, or looking for a partnership? Just ask.</p>
-        <a href="https://discord.com/users/973345193413709944" target="_blank" rel="noopener" class="btn btn-primary">Message on Discord</a>
+        <button type="button" class="btn btn-primary" onclick="copyDiscordUsername()">Message on Discord</button>
       </div>
 
     </div>
@@ -398,9 +432,47 @@
 <footer>
   <div class="wrap">
     <span>© 2026 Nife. All rights reserved.</span>
-    <a href="https://discord.com/users/973345193413709944" target="_blank" rel="noopener">Discord</a>
+    <a href="#" onclick="copyDiscordUsername(); return false;">Discord</a>
   </div>
 </footer>
+
+<div id="discord-toast">Discord username copied to clipboard!</div>
+
+<script>
+  function copyDiscordUsername(){
+    var username = "nifeminecraft";
+    var toast = document.getElementById("discord-toast");
+
+    function showToast(){
+      toast.classList.add("show");
+      clearTimeout(window._discordToastTimer);
+      window._discordToastTimer = setTimeout(function(){
+        toast.classList.remove("show");
+      }, 2400);
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(username).then(showToast).catch(function(){
+        fallbackCopy(username);
+        showToast();
+      });
+    } else {
+      fallbackCopy(username);
+      showToast();
+    }
+  }
+
+  function fallbackCopy(text){
+    var el = document.createElement("textarea");
+    el.value = text;
+    el.style.position = "fixed";
+    el.style.opacity = "0";
+    document.body.appendChild(el);
+    el.select();
+    try { document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(el);
+  }
+</script>
 
 </body>
 </html>
