@@ -128,8 +128,16 @@
     font-weight:500;
     color:var(--muted);
   }
-  .nav-links a{transition:color .15s;}
+  .nav-links a{
+    transition:color .15s, transform .15s, font-weight .15s;
+    display:inline-block;
+  }
   .nav-links a:hover{color:var(--text);}
+  .nav-links a.active{
+    color:var(--text);
+    font-weight:700;
+    transform:scale(1.08);
+  }
   .nav-cta{
     font-size:13.5px;
     font-weight:600;
@@ -713,6 +721,35 @@
     try { document.execCommand("copy"); } catch (e) {}
     document.body.removeChild(el);
   }
+</script>
+
+<script>
+  (function(){
+    var sections = ["work", "about", "contact"].map(function(id){
+      return document.getElementById(id);
+    }).filter(Boolean);
+
+    var links = {};
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(function(a){
+      links[a.getAttribute("href").slice(1)] = a;
+    });
+
+    function setActive(id){
+      Object.keys(links).forEach(function(key){
+        links[key].classList.toggle("active", key === id);
+      });
+    }
+
+    var observer = new IntersectionObserver(function(entries){
+      var visible = entries.filter(function(e){ return e.isIntersecting; });
+      if (visible.length){
+        visible.sort(function(a, b){ return b.intersectionRatio - a.intersectionRatio; });
+        setActive(visible[0].target.id);
+      }
+    }, { rootMargin: "-40% 0px -40% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] });
+
+    sections.forEach(function(s){ observer.observe(s); });
+  })();
 </script>
 
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "13fecc09cc184a379b43bd7e2968e934"}'></script><!-- End Cloudflare Web Analytics -->
