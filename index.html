@@ -283,6 +283,71 @@
     max-width:480px;
   }
 
+  /* ---------- MARQUEE ROWS ---------- */
+  .marquee-row-head{margin:0 0 16px; margin-top:44px;}
+  .marquee-row-head:first-of-type{margin-top:8px;}
+  .marquee-row-head h3{
+    font-size:14px;
+    font-weight:600;
+    color:var(--muted);
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+  }
+  .marquee{
+    overflow:hidden;
+    width:100%;
+    -webkit-mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+  .marquee-track{
+    display:flex;
+    gap:16px;
+    width:max-content;
+    animation:marquee-scroll linear infinite;
+    animation-duration:var(--marquee-duration, 40s);
+  }
+  .marquee[data-reverse="true"] .marquee-track{
+    animation-direction:reverse;
+  }
+  .marquee:hover .marquee-track{
+    animation-play-state:paused;
+  }
+  @keyframes marquee-scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  .m-card{
+    display:block;
+    flex:0 0 auto;
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid var(--border);
+    background:var(--panel);
+    transition:transform .18s, border-color .18s, box-shadow .18s;
+  }
+  .m-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--border-strong);
+    box-shadow:0 16px 32px -18px rgba(255,68,56,0.4);
+  }
+  .m-card img{width:100%;height:100%;object-fit:cover;display:block;}
+  .m-video{width:300px; aspect-ratio:16/9;}
+  .m-short{width:170px; aspect-ratio:9/16;}
+  .m-thumb{width:220px; aspect-ratio:16/9;}
+  .marquee-cta{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    margin-top:50px;
+    flex-wrap:wrap;
+  }
+
+  @media (max-width:600px){
+    .m-video{width:220px;}
+    .m-short{width:130px;}
+    .m-thumb{width:170px;}
+  }
+
   /* ---------- PORTFOLIO GRID ---------- */
   .grid{
     display:flex;
@@ -520,8 +585,8 @@
       NIFE
     </a>
     <div class="nav-links">
-      <a href="#work">Work</a>
-      <a href="#videos">Videos</a>
+      <a href="/thumbnails">Thumbnails</a>
+      <a href="/edits">Edits</a>
       <a href="#about">About</a>
       <a href="/prices">Prices</a>
       <a href="#contact">Contact</a>
@@ -560,130 +625,65 @@
     </div>
   </section>
 
-  <!-- PORTFOLIO -->
+  <!-- SELECTED WORK (MARQUEE) -->
   <section id="work">
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow">SELECTED WORK</span>
-        <h2>Some of my best thumbnails</h2>
-        <p>A handful of recent thumbnails made for Minecraft creators that were built to grab attention.</p>
-      </div>
-
-      <div class="grid">
-        <article class="card">
-          <div class="card-media">
-            <img src="images/sword.png" alt="Bedwars But, I Can't Use A Sword thumbnail" loading="lazy">
-            <span class="card-badge">THUMBNAIL</span>
-          </div>
-          <div class="card-body"><h3>Bedwars But, I Can't Use A Sword</h3></div>
-        </article>
-
-        <article class="card">
-          <div class="card-media">
-            <img src="images/island.png" alt="Bedwars But I Can't Leave My Island thumbnail" loading="lazy">
-            <span class="card-badge">THUMBNAIL</span>
-          </div>
-          <div class="card-body"><h3>Bedwars But I Can't Leave My Island</h3></div>
-        </article>
-
-        <article class="card">
-          <div class="card-media">
-            <img src="images/wool.png" alt="Bedwars But I Can't Use Wool thumbnail" loading="lazy">
-            <span class="card-badge">THUMBNAIL</span>
-          </div>
-          <div class="card-body"><h3>Bedwars But I Can't Use Wool</h3></div>
-        </article>
-
-        <article class="card">
-          <div class="card-media">
-            <img src="images/shop.png" alt="Bedwars But I Can't Use The Shop thumbnail" loading="lazy">
-            <span class="card-badge">THUMBNAIL</span>
-          </div>
-          <div class="card-body"><h3>Bedwars But I Can't Use The Shop</h3></div>
-        </article>
-
-        <article class="card">
-          <div class="card-media">
-            <img src="images/pig.png" alt="I Captured Every Pig In Minecraft thumbnail" loading="lazy">
-            <span class="card-badge">THUMBNAIL</span>
-          </div>
-          <div class="card-body"><h3>I Captured Every Pig In Minecraft</h3></div>
-        </article>
-
-        <article class="card">
-          <div class="card-media">
-            <img src="images/oneblock.png" alt="Bedwars But It's One Block thumbnail" loading="lazy">
-            <span class="card-badge">THUMBNAIL</span>
-          </div>
-          <div class="card-body"><h3>Bedwars But It's One Block</h3></div>
-        </article>
-
-        <article class="card">
-          <div class="card-media">
-            <img src="images/flatworld.png" alt="Minecraft But The World Is Flat thumbnail" loading="lazy">
-            <span class="card-badge">THUMBNAIL</span>
-          </div>
-          <div class="card-body"><h3>Minecraft But The World Is Flat</h3></div>
-        </article>
-
-        <article class="card">
-          <div class="card-media">
-            <img src="images/cow.png" alt="I Captured Every Cow In Minecraft thumbnail" loading="lazy">
-            <span class="card-badge">THUMBNAIL</span>
-          </div>
-          <div class="card-body"><h3>I Captured Every Cow In Minecraft</h3></div>
-        </article>
+        <h2>A taste of what I make</h2>
+        <p>Long-form edits, shorts, and thumbnails made for Minecraft creators.</p>
       </div>
     </div>
-  </section>
 
-  <!-- VIDEOS -->
-  <section id="videos" style="padding-top:0;">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">SELECTED WORK</span>
-        <h2>Video editing highlights</h2>
-        <p>A few edits and shorts I've put together for creators.</p>
+    <div class="marquee-row-head wrap"><h3>Long-Form</h3></div>
+    <div class="marquee" style="--marquee-duration:42s;">
+      <div class="marquee-track">
+        <a class="m-card m-video" href="https://www.youtube.com/watch?v=2lVkqseoLQs" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/2lVkqseoLQs/hqdefault.jpg" alt="Long-form edit" loading="lazy"></a>
+        <a class="m-card m-video" href="https://www.youtube.com/watch?v=-hMCpVlxNFc" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/-hMCpVlxNFc/hqdefault.jpg" alt="Long-form edit" loading="lazy"></a>
+        <a class="m-card m-video" href="https://www.youtube.com/watch?v=sIEMs2KGF84" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/sIEMs2KGF84/hqdefault.jpg" alt="Long-form edit" loading="lazy"></a>
+        <a class="m-card m-video" href="https://www.youtube.com/watch?v=2lVkqseoLQs" target="_blank" rel="noopener" aria-hidden="true"><img src="https://img.youtube.com/vi/2lVkqseoLQs/hqdefault.jpg" alt="" loading="lazy"></a>
+        <a class="m-card m-video" href="https://www.youtube.com/watch?v=-hMCpVlxNFc" target="_blank" rel="noopener" aria-hidden="true"><img src="https://img.youtube.com/vi/-hMCpVlxNFc/hqdefault.jpg" alt="" loading="lazy"></a>
+        <a class="m-card m-video" href="https://www.youtube.com/watch?v=sIEMs2KGF84" target="_blank" rel="noopener" aria-hidden="true"><img src="https://img.youtube.com/vi/sIEMs2KGF84/hqdefault.jpg" alt="" loading="lazy"></a>
       </div>
+    </div>
 
-      <div class="video-row shorts-row">
-        <article class="card video-card">
-          <div class="card-media" style="aspect-ratio:9/16;">
-            <iframe src="https://www.youtube.com/embed/Qk2QBPuriD0" title="YouTube short" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" style="width:100%;height:100%;border:0;"></iframe>
-          </div>
-          <div class="card-body"><span class="video-tag">SHORT</span></div>
-        </article>
-
-        <article class="card video-card">
-          <div class="card-media" style="aspect-ratio:9/16;">
-            <iframe src="https://www.youtube.com/embed/ADNbYD4lUkk" title="YouTube short" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" style="width:100%;height:100%;border:0;"></iframe>
-          </div>
-          <div class="card-body"><span class="video-tag">SHORT</span></div>
-        </article>
+    <div class="marquee-row-head wrap"><h3>Shorts</h3></div>
+    <div class="marquee" data-reverse="true" style="--marquee-duration:26s;">
+      <div class="marquee-track">
+        <a class="m-card m-short" href="https://www.youtube.com/shorts/Qk2QBPuriD0" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/Qk2QBPuriD0/hqdefault.jpg" alt="Short edit" loading="lazy"></a>
+        <a class="m-card m-short" href="https://www.youtube.com/shorts/ADNbYD4lUkk" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/ADNbYD4lUkk/hqdefault.jpg" alt="Short edit" loading="lazy"></a>
+        <a class="m-card m-short" href="https://www.youtube.com/shorts/Qk2QBPuriD0" target="_blank" rel="noopener" aria-hidden="true"><img src="https://img.youtube.com/vi/Qk2QBPuriD0/hqdefault.jpg" alt="" loading="lazy"></a>
+        <a class="m-card m-short" href="https://www.youtube.com/shorts/ADNbYD4lUkk" target="_blank" rel="noopener" aria-hidden="true"><img src="https://img.youtube.com/vi/ADNbYD4lUkk/hqdefault.jpg" alt="" loading="lazy"></a>
+        <a class="m-card m-short" href="https://www.youtube.com/shorts/Qk2QBPuriD0" target="_blank" rel="noopener" aria-hidden="true"><img src="https://img.youtube.com/vi/Qk2QBPuriD0/hqdefault.jpg" alt="" loading="lazy"></a>
+        <a class="m-card m-short" href="https://www.youtube.com/shorts/ADNbYD4lUkk" target="_blank" rel="noopener" aria-hidden="true"><img src="https://img.youtube.com/vi/ADNbYD4lUkk/hqdefault.jpg" alt="" loading="lazy"></a>
       </div>
+    </div>
 
-      <div class="video-row longform-row">
-        <article class="card video-card">
-          <div class="card-media">
-            <iframe src="https://www.youtube.com/embed/2lVkqseoLQs?start=11" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" style="width:100%;height:100%;border:0;"></iframe>
-          </div>
-          <div class="card-body"><span class="video-tag">LONGFORM</span></div>
-        </article>
-
-        <article class="card video-card">
-          <div class="card-media">
-            <iframe src="https://www.youtube.com/embed/-hMCpVlxNFc" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" style="width:100%;height:100%;border:0;"></iframe>
-          </div>
-          <div class="card-body"><span class="video-tag">LONGFORM</span></div>
-        </article>
-
-        <article class="card video-card">
-          <div class="card-media">
-            <iframe src="https://www.youtube.com/embed/sIEMs2KGF84" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" style="width:100%;height:100%;border:0;"></iframe>
-          </div>
-          <div class="card-body"><span class="video-tag">LONGFORM</span></div>
-        </article>
+    <div class="marquee-row-head wrap"><h3>Thumbnails</h3></div>
+    <div class="marquee" style="--marquee-duration:55s;">
+      <div class="marquee-track">
+        <a class="m-card m-thumb" href="/thumbnails"><img src="images/sword.png" alt="Thumbnail"></a>
+        <a class="m-card m-thumb" href="/thumbnails"><img src="images/island.png" alt="Thumbnail"></a>
+        <a class="m-card m-thumb" href="/thumbnails"><img src="images/wool.png" alt="Thumbnail"></a>
+        <a class="m-card m-thumb" href="/thumbnails"><img src="images/shop.png" alt="Thumbnail"></a>
+        <a class="m-card m-thumb" href="/thumbnails"><img src="images/pig.png" alt="Thumbnail"></a>
+        <a class="m-card m-thumb" href="/thumbnails"><img src="images/oneblock.png" alt="Thumbnail"></a>
+        <a class="m-card m-thumb" href="/thumbnails"><img src="images/flatworld.png" alt="Thumbnail"></a>
+        <a class="m-card m-thumb" href="/thumbnails"><img src="images/cow.png" alt="Thumbnail"></a>
+        <a class="m-card m-thumb" href="/thumbnails" aria-hidden="true"><img src="images/sword.png" alt=""></a>
+        <a class="m-card m-thumb" href="/thumbnails" aria-hidden="true"><img src="images/island.png" alt=""></a>
+        <a class="m-card m-thumb" href="/thumbnails" aria-hidden="true"><img src="images/wool.png" alt=""></a>
+        <a class="m-card m-thumb" href="/thumbnails" aria-hidden="true"><img src="images/shop.png" alt=""></a>
+        <a class="m-card m-thumb" href="/thumbnails" aria-hidden="true"><img src="images/pig.png" alt=""></a>
+        <a class="m-card m-thumb" href="/thumbnails" aria-hidden="true"><img src="images/oneblock.png" alt=""></a>
+        <a class="m-card m-thumb" href="/thumbnails" aria-hidden="true"><img src="images/flatworld.png" alt=""></a>
+        <a class="m-card m-thumb" href="/thumbnails" aria-hidden="true"><img src="images/cow.png" alt=""></a>
       </div>
+    </div>
+
+    <div class="wrap marquee-cta">
+      <a href="/thumbnails" class="btn btn-secondary">View all thumbnails</a>
+      <a href="/edits" class="btn btn-secondary">View all edits</a>
     </div>
   </section>
 
@@ -811,7 +811,7 @@
 
 <script>
   (function(){
-    var sections = ["work", "videos", "about", "contact"].map(function(id){
+    var sections = ["about", "contact"].map(function(id){
       return document.getElementById(id);
     }).filter(Boolean);
 
