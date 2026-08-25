@@ -304,7 +304,7 @@
     gap:16px;
     width:max-content;
     animation:marquee-scroll linear infinite;
-    animation-duration:var(--marquee-duration, 40s);
+    animation-duration:40s;
   }
   .marquee[data-reverse="true"] .marquee-track{
     animation-direction:reverse;
@@ -314,7 +314,7 @@
   }
   @keyframes marquee-scroll{
     from{transform:translateX(0);}
-    to{transform:translateX(-50%);}
+    to{transform:translateX(calc(-1 * var(--unit-width, 50%)));}
   }
   .m-card{
     display:block;
@@ -449,6 +449,57 @@
   .name{color:var(--text);font-weight:700;}
   .about-copy h2{margin:10px 0 18px;}
 
+  /* ---------- TESTIMONIALS ---------- */
+  .review-card{
+    display:flex;
+    align-items:center;
+    gap:24px;
+    max-width:640px;
+    margin:0 auto;
+    padding:28px 32px;
+    border-radius:20px;
+    background:linear-gradient(180deg, var(--panel), var(--panel-2));
+    border:1px solid var(--border-strong);
+    box-shadow:0 24px 55px -28px rgba(155,0,0,0.5);
+  }
+  .review-avatar{
+    flex:0 0 auto;
+    width:72px;height:72px;
+    border-radius:16px;
+    background:linear-gradient(145deg, var(--red), var(--deep));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Sora',sans-serif;
+    font-weight:800;
+    font-size:28px;
+    color:#fff;
+    box-shadow:0 0 20px rgba(255,68,56,0.4);
+  }
+  .review-top{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:8px;
+  }
+  .review-top h3{font-size:17px;}
+  .review-stars{
+    color:var(--red);
+    font-size:15px;
+    letter-spacing:2px;
+  }
+  .review-quote{
+    color:var(--muted);
+    font-size:15px;
+    line-height:1.6;
+    font-style:italic;
+  }
+  @media (max-width:520px){
+    .review-card{flex-direction:column; text-align:center; padding:28px 22px;}
+    .review-top{justify-content:center;}
+  }
+
   @media (max-width:800px){
     .about-grid{grid-template-columns:1fr;text-align:center;}
     .about-photo{max-width:280px;margin:0 auto;}
@@ -560,6 +611,7 @@
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
     *{transition:none !important;}
+    .marquee-track{animation:none !important;}
   }
 </style>
 </head>
@@ -602,7 +654,7 @@
     <div class="wrap">
       <span class="eyebrow">THUMBNAIL DESIGNER &amp; VIDEO EDITOR</span>
       <h1>Thumbnails and edits that stop <span>the scroll.</span></h1>
-      <p class="sub">I'm Nife, a graphic designer and video editor who helps YouTubers bring their ideas to life. Clean design, strong visuals, that make thumbnails built to get clicks.</p>
+      <p class="sub">I'm Nife, a graphic designer and video editor who helps YouTubers bring their ideas to life. Clean design, strong visuals, that make thumbnails and edits built to get clicks.</p>
       <div class="hero-actions">
         <a href="#work" class="btn btn-primary">View my work</a>
         <button type="button" class="btn btn-secondary" onclick="copyDiscordUsername()">Contact me</button>
@@ -636,7 +688,7 @@
     </div>
 
     <div class="marquee-row-head wrap"><h3>Long-Form</h3></div>
-    <div class="marquee" style="--marquee-duration:42s;">
+    <div class="marquee" data-pxps="55">
       <div class="marquee-track">
         <a class="m-card m-video" href="https://www.youtube.com/watch?v=2lVkqseoLQs" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/2lVkqseoLQs/hqdefault.jpg" alt="Long-form edit" loading="lazy"></a>
         <a class="m-card m-video" href="https://www.youtube.com/watch?v=-hMCpVlxNFc" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/-hMCpVlxNFc/hqdefault.jpg" alt="Long-form edit" loading="lazy"></a>
@@ -648,7 +700,7 @@
     </div>
 
     <div class="marquee-row-head wrap"><h3>Shorts</h3></div>
-    <div class="marquee" data-reverse="true" style="--marquee-duration:26s;">
+    <div class="marquee" data-reverse="true" data-pxps="45">
       <div class="marquee-track">
         <a class="m-card m-short" href="https://www.youtube.com/shorts/Qk2QBPuriD0" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/Qk2QBPuriD0/hqdefault.jpg" alt="Short edit" loading="lazy"></a>
         <a class="m-card m-short" href="https://www.youtube.com/shorts/ADNbYD4lUkk" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/ADNbYD4lUkk/hqdefault.jpg" alt="Short edit" loading="lazy"></a>
@@ -660,7 +712,7 @@
     </div>
 
     <div class="marquee-row-head wrap"><h3>Thumbnails</h3></div>
-    <div class="marquee" style="--marquee-duration:55s;">
+    <div class="marquee" data-pxps="65">
       <div class="marquee-track">
         <a class="m-card m-thumb" href="/thumbnails"><img src="images/sword.png" alt="Thumbnail"></a>
         <a class="m-card m-thumb" href="/thumbnails"><img src="images/island.png" alt="Thumbnail"></a>
@@ -682,8 +734,8 @@
     </div>
 
     <div class="wrap marquee-cta">
-      <a href="/thumbnails" class="btn btn-secondary">View all thumbnails</a>
-      <a href="/edits" class="btn btn-secondary">View all edits</a>
+      <a href="/thumbnails" class="btn btn-primary">View all thumbnails</a>
+      <a href="/edits" class="btn btn-primary">View all edits</a>
     </div>
   </section>
 
@@ -699,6 +751,28 @@
         <p><span class="name">Hi, I'm Nife</span> (pronounced Knife). While Nife isn't my real name, it's the name I go by online. I'm a thumbnail designer and video editor for YouTubers.</p>
         <p>I'm passionate about graphic design and creating thumbnails that help videos, and creators stand out.</p>
         <p>If you'd like to see more of my recent work, check out the <a href="#work" style="color:var(--red); text-decoration:underline;">portfolio above</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="reviews" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">TESTIMONIALS</span>
+        <h2>What creators say</h2>
+        <p>A few words from people I've worked with.</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-avatar">K</div>
+        <div class="review-body">
+          <div class="review-top">
+            <h3>Kylers</h3>
+            <div class="review-stars">★★★★★</div>
+          </div>
+          <p class="review-quote">"Nife is an amazing editor and thumbnail designer."</p>
+        </div>
       </div>
     </div>
   </section>
@@ -835,6 +909,71 @@
     }, { rootMargin: "-40% 0px -40% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] });
 
     sections.forEach(function(s){ observer.observe(s); });
+  })();
+</script>
+
+<script>
+  (function(){
+    function setupMarquee(marquee){
+      var track = marquee.querySelector(".marquee-track");
+      if (!track || track.dataset.ready) return;
+
+      var originalChildren = Array.from(track.children);
+      var unitWidth = track.scrollWidth;
+      var containerWidth = marquee.offsetWidth;
+
+      if (unitWidth === 0 || containerWidth === 0) return;
+
+      // Make sure the track is always at least ~2.2x the visible width,
+      // so the loop never runs out of content on wide screens.
+      var neededWidth = containerWidth * 2.2;
+      var safety = 0;
+      while (track.scrollWidth < neededWidth && safety < 40){
+        originalChildren.forEach(function(child){
+          var clone = child.cloneNode(true);
+          clone.setAttribute("aria-hidden", "true");
+          clone.setAttribute("tabindex", "-1");
+          clone.dataset.wasClone = "true";
+          track.appendChild(clone);
+        });
+        safety++;
+      }
+
+      track.style.setProperty("--unit-width", unitWidth + "px");
+
+      var pxps = parseFloat(marquee.dataset.pxps) || 45;
+      var duration = unitWidth / pxps;
+      track.style.animationDuration = duration + "s";
+
+      track.dataset.ready = "true";
+    }
+
+    function setupAll(){
+      document.querySelectorAll(".marquee").forEach(setupMarquee);
+    }
+
+    if (document.readyState === "complete"){
+      setupAll();
+    } else {
+      window.addEventListener("load", setupAll);
+    }
+
+    var resizeTimer;
+    window.addEventListener("resize", function(){
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function(){
+        document.querySelectorAll(".marquee-track").forEach(function(track){
+          track.dataset.ready = "";
+          // remove clones added previously, keep only originally-authored items
+          Array.from(track.children).forEach(function(child){
+            if (child.getAttribute("aria-hidden") === "true" && child.dataset.wasClone !== undefined){
+              child.remove();
+            }
+          });
+        });
+        setupAll();
+      }, 300);
+    });
   })();
 </script>
 
