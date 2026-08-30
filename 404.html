@@ -54,7 +54,7 @@
 
   .logo{
     position:fixed;
-    top:24px;left:24px;
+    top:calc(24px + var(--banner-h, 0px));left:24px;
     display:flex;
     align-items:center;
     gap:9px;
@@ -72,7 +72,7 @@
     align-items:center;
     justify-content:center;
     text-align:center;
-    padding:100px 24px 40px;
+    padding:calc(100px + var(--banner-h, 0px)) 24px 40px;
   }
   .code{
     font-family:'Sora',sans-serif;
@@ -110,6 +110,27 @@
     transition:transform .15s, box-shadow .15s;
   }
   .btn:hover{transform:translateY(-1px);box-shadow:0 14px 34px -8px rgba(255,68,56,0.75);}
+
+  /* ---------- ANNOUNCEMENT BANNER ---------- */
+  #site-announcement{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:200;
+    background:linear-gradient(135deg, var(--red), var(--deep));
+    border-bottom:1px solid rgba(255,255,255,0.14);
+    box-shadow:0 4px 18px -6px rgba(255,68,56,0.55);
+  }
+  .announcement-inner{
+    max-width:1180px;
+    margin:0 auto;
+    padding:8px 24px;
+    text-align:center;
+    font-family:'Sora',sans-serif;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:0.02em;
+    color:#fff;
+  }
 </style>
 </head>
 <body>
@@ -139,5 +160,6 @@
   <a href="/" class="btn">Back to nifeminecraft.com</a>
 </main>
 
+<script src="announcement.js"></script>
 </body>
 </html>
