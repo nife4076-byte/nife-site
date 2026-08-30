@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pricing | Nife</title>
-<meta name="description" content="Thumbnail and video editing pricing for Nife, a Minecraft-focused thumbnail designer and video editor.">
+<meta name="description" content="Thumbnail and video editing pricing for Nife, a gaming-focused thumbnail designer and video editor.">
 <link rel="icon" type="image/png" href="../images/profile.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -84,7 +84,7 @@
   /* ---------- NAV ---------- */
   header{
     position:fixed;
-    top:16px;left:0;right:0;
+    top:calc(16px + var(--banner-h, 0px));left:0;right:0;
     z-index:100;
     display:flex;
     justify-content:center;
@@ -174,7 +174,7 @@
 
   /* ---------- HERO ---------- */
   .hero{
-    padding:170px 0 40px;
+    padding:calc(170px + var(--banner-h, 0px)) 0 40px;
     text-align:center;
   }
   .hero h1{
@@ -339,6 +339,27 @@
     opacity:1;
     transform:translateX(-50%) translateY(0);
   }
+
+  /* ---------- ANNOUNCEMENT BANNER ---------- */
+  #site-announcement{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:200;
+    background:linear-gradient(135deg, var(--red), var(--deep));
+    border-bottom:1px solid rgba(255,255,255,0.14);
+    box-shadow:0 4px 18px -6px rgba(255,68,56,0.55);
+  }
+  .announcement-inner{
+    max-width:1180px;
+    margin:0 auto;
+    padding:8px 24px;
+    text-align:center;
+    font-family:'Sora',sans-serif;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:0.02em;
+    color:#fff;
+  }
 </style>
 </head>
 <body>
@@ -475,5 +496,6 @@
   }
 </script>
 
+<script src="../announcement.js"></script>
 </body>
 </html>
