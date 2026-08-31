@@ -4,7 +4,7 @@
    Set ANNOUNCEMENT_ENABLED to false to turn the banner off
    everywhere, or true to turn it back on. That's it.
    ============================================================ */
-var ANNOUNCEMENT_ENABLED = true;
+var ANNOUNCEMENT_ENABLED = false;
 var ANNOUNCEMENT_TEXT = "Notice: Short-form videos are temporarily unavailable while Kylers' channel is under a temporary suspension.";
 /* ============================================================ */
 
