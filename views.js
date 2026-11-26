@@ -8,7 +8,7 @@
    A manual number always wins over the automatic one, and works
    even if you never set up an API key.
    ============================================================ */
-var YT_API_KEY = "AIzaSyDolYxLiC5pwdngio2FaTresWbKwpsdSws";
+var YT_API_KEY = "";
 
 var MANUAL_VIEWS = {
   "KJZdlSHFOkg": "",
