@@ -57,7 +57,6 @@
     width:6px;height:6px;
     border-radius:50%;
     background:var(--red);
-    box-shadow:0 0 10px var(--red);
   }
 
   /* ---------- BACKDROP ---------- */
@@ -65,10 +64,7 @@
     position:fixed;
     inset:0;
     z-index:-1;
-    background:
-      radial-gradient(1100px 620px at 50% -6%, rgba(155,0,0,0.38), transparent 60%),
-      radial-gradient(700px 500px at 88% 18%, rgba(255,68,56,0.14), transparent 65%),
-      var(--bg);
+    background:var(--bg);
   }
   .bg-icons{
     position:absolute;
@@ -98,10 +94,8 @@
     max-width:1080px;
     padding:12px 14px 12px 20px;
     border-radius:999px;
-    background:rgba(15,7,10,0.72);
-    backdrop-filter:blur(14px);
+    background:var(--panel);
     border:1px solid var(--border);
-    box-shadow:0 8px 30px -12px rgba(0,0,0,0.6);
   }
   .logo{
     font-family:'Sora',sans-serif;
@@ -140,13 +134,12 @@
     font-weight:600;
     padding:10px 20px;
     border-radius:999px;
-    background:linear-gradient(135deg, var(--red), var(--deep));
+    background:var(--red);
     color:#fff;
-    box-shadow:0 6px 20px -6px rgba(255,68,56,0.55);
-    transition:transform .15s, box-shadow .15s;
+    transition:transform .15s;
     white-space:nowrap;
   }
-  .nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px -6px rgba(255,68,56,0.7);}
+  .nav-cta:hover{transform:translateY(-1px);}
 
   @media (max-width:760px){
     .nav-links{display:none;}
@@ -162,15 +155,13 @@
     display:inline-flex;
     align-items:center;
     gap:8px;
-    transition:transform .15s, box-shadow .15s, border-color .15s;
+    transition:transform .15s, border-color .15s;
   }
   .btn:hover{transform:translateY(-1px);}
   .btn-primary{
-    background:linear-gradient(135deg, var(--red), var(--deep));
+    background:var(--red);
     color:#fff;
-    box-shadow:0 10px 30px -8px rgba(255,68,56,0.55);
   }
-  .btn-primary:hover{box-shadow:0 14px 34px -8px rgba(255,68,56,0.75);}
 
   /* ---------- HERO ---------- */
   .hero{
@@ -184,10 +175,7 @@
     margin:18px auto 0;
   }
   .hero h1 span{
-    background:linear-gradient(135deg, #fff, var(--red) 120%);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
+    color:var(--red);
   }
   .hero p.sub{
     margin:20px auto 0;
@@ -210,14 +198,13 @@
     border-radius:12px;
     overflow:hidden;
     background:var(--panel);
-    transition:transform .18s, border-color .18s, box-shadow .18s;
+    transition:transform .18s, border-color .18s;
     flex:0 0 calc((100% - 40px) / 3);
     max-width:calc((100% - 40px) / 3);
   }
   .card:hover{
     transform:translateY(-5px);
     border-color:var(--border-strong);
-    box-shadow:0 20px 40px -20px rgba(255,68,56,0.35);
   }
   .card-media{position:relative;aspect-ratio:16/9;overflow:hidden;background:#000;}
   .card-media img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease;}
@@ -292,7 +279,6 @@
     font-weight:500;
     padding:13px 22px;
     border-radius:999px;
-    box-shadow:0 20px 50px -15px rgba(0,0,0,0.7), 0 0 20px rgba(255,68,56,0.25);
     opacity:0;
     pointer-events:none;
     transition:opacity .25s ease, transform .25s ease;
@@ -304,14 +290,16 @@
     transform:translateX(-50%) translateY(0);
   }
 
+  /* ---------- FLAT HOVER ---------- */
+  .nav-cta:hover, .btn-primary:hover, .btn:hover{filter:brightness(.9);}
+
   /* ---------- ANNOUNCEMENT BANNER ---------- */
   #site-announcement{
     position:fixed;
     top:0;left:0;right:0;
     z-index:200;
-    background:linear-gradient(135deg, var(--red), var(--deep));
+    background:var(--deep);
     border-bottom:1px solid rgba(255,255,255,0.14);
-    box-shadow:0 4px 18px -6px rgba(255,68,56,0.55);
   }
   .announcement-inner{
     max-width:1180px;
@@ -390,6 +378,14 @@
   <section>
     <div class="wrap">
       <div class="grid">
+        <article class="card">
+          <div class="card-media">
+            <img src="../images/thumbnail15.png" alt="Latest long-form video thumbnail" loading="lazy">
+            <span class="card-badge">THUMBNAIL</span>
+          </div>
+          <div class="card-body"><h3>Latest Long-Form Video</h3></div>
+        </article>
+
         <article class="card">
           <div class="card-media">
             <img src="../images/thumbnail14.png" alt="Minecraft But You Can Smelt Anything thumbnail" loading="lazy">
@@ -510,8 +506,7 @@
              data-ad-client="ca-pub-1068078723050037"
              data-ad-slot="8543168523"
              data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+             data-full-width-responsive="true"></ins>);</script>
       </div>
 
       <p class="more-note">More thumbnails added regularly.</p>
