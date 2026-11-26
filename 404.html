@@ -36,10 +36,7 @@
     position:fixed;
     inset:0;
     z-index:-1;
-    background:
-      radial-gradient(1100px 620px at 50% -6%, rgba(155,0,0,0.38), transparent 60%),
-      radial-gradient(700px 500px at 88% 18%, rgba(255,68,56,0.14), transparent 65%),
-      var(--bg);
+    background:var(--bg);
   }
   .bg-icons{
     position:absolute;
@@ -79,10 +76,7 @@
     font-weight:800;
     font-size:clamp(80px,18vw,160px);
     line-height:1;
-    background:linear-gradient(135deg, #fff, var(--red) 130%);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
+    color:var(--red);
     margin-bottom:6px;
   }
   h1{
@@ -104,21 +98,22 @@
     font-size:15px;
     padding:13px 26px;
     border-radius:999px;
-    background:linear-gradient(135deg, var(--red), var(--deep));
+    background:var(--red);
     color:#fff;
-    box-shadow:0 10px 30px -8px rgba(255,68,56,0.55);
-    transition:transform .15s, box-shadow .15s;
+    transition:transform .15s;
   }
-  .btn:hover{transform:translateY(-1px);box-shadow:0 14px 34px -8px rgba(255,68,56,0.75);}
+  .btn:hover{transform:translateY(-1px);}
+
+  /* ---------- FLAT HOVER ---------- */
+  .nav-cta:hover, .btn-primary:hover, .btn:hover{filter:brightness(.9);}
 
   /* ---------- ANNOUNCEMENT BANNER ---------- */
   #site-announcement{
     position:fixed;
     top:0;left:0;right:0;
     z-index:200;
-    background:linear-gradient(135deg, var(--red), var(--deep));
+    background:var(--deep);
     border-bottom:1px solid rgba(255,255,255,0.14);
-    box-shadow:0 4px 18px -6px rgba(255,68,56,0.55);
   }
   .announcement-inner{
     max-width:1180px;
