@@ -1,1 +1,74 @@
+name: Update view counts
 
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the site
+        uses: actions/checkout@v4
+
+      - name: Fetch view counts from YouTube
+        env:
+          YT_API_KEY: ${{ secrets.YT_API_KEY }}
+        run: |
+          python3 - <<'PY'
+          import json, os, re, sys, urllib.parse, urllib.request
+
+          key = os.environ.get("YT_API_KEY", "").strip()
+          if not key:
+              sys.exit("YT_API_KEY secret is missing")
+
+          ids = set()
+          for path in ("index.html", "edits/index.html"):
+              try:
+                  with open(path, encoding="utf-8") as f:
+                      ids.update(re.findall(r'data-views-id="([^"]+)"', f.read()))
+              except FileNotFoundError:
+                  pass
+          ids = sorted(ids)
+          if not ids:
+              sys.exit("no video ids found")
+
+          views = {}
+          for i in range(0, len(ids), 50):
+              chunk = ids[i:i + 50]
+              query = urllib.parse.urlencode({"part": "statistics", "id": ",".join(chunk), "key": key})
+              url = "https://www.googleapis.com/youtube/v3/videos?" + query
+              try:
+                  with urllib.request.urlopen(url, timeout=30) as resp:
+                      data = json.load(resp)
+              except Exception as e:
+                  sys.exit("YouTube request failed: " + type(e).__name__)
+              for item in data.get("items", []):
+                  count = item.get("statistics", {}).get("viewCount")
+                  if count:
+                      views[item["id"]] = count
+
+          if not views:
+              sys.exit("YouTube returned no view counts, leaving the file alone")
+
+          with open("views-data.json", "w", encoding="utf-8") as f:
+              json.dump({"views": views}, f, indent=2, sort_keys=True)
+              f.write("\n")
+          print("Updated", len(views), "videos")
+          PY
+
+      - name: Save changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add views-data.json
+          if git diff --cached --quiet; then
+            echo "No changes to save"
+          else
+            git commit -m "Update view counts"
+            git push
+          fi
